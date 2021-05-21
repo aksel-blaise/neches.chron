@@ -200,55 +200,58 @@ div.csl-indent {
 <span id="cb5-2"><a href="mcd-and-confidence-interval.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-3"><a href="mcd-and-confidence-interval.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="mcd-and-confidence-interval.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#read data</span></span>
-<span id="cb5-5"><a href="mcd-and-confidence-interval.html#cb5-5" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;nrb_mcd_data.csv&#39;</span>, <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb5-6"><a href="mcd-and-confidence-interval.html#cb5-6" aria-hidden="true" tabindex="-1"></a>types <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">colnames</span>(mydata))</span>
-<span id="cb5-7"><a href="mcd-and-confidence-interval.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="mcd-and-confidence-interval.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="mcd-and-confidence-interval.html#cb5-9" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;nrb_type_dates.csv&#39;</span>, <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, <span class="at">header =</span> T)</span>
-<span id="cb5-10"><a href="mcd-and-confidence-interval.html#cb5-10" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">min</span>(dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb5-11"><a href="mcd-and-confidence-interval.html#cb5-11" aria-hidden="true" tabindex="-1"></a>dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="sc">+</span> (bc<span class="sc">*-</span><span class="dv">1</span>)</span>
-<span id="cb5-12"><a href="mcd-and-confidence-interval.html#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="mcd-and-confidence-interval.html#cb5-13" aria-hidden="true" tabindex="-1"></a>midpt <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(((dates[,<span class="dv">3</span>] <span class="sc">-</span> dates[,<span class="dv">2</span>])<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> dates[,<span class="dv">2</span>])</span>
-<span id="cb5-14"><a href="mcd-and-confidence-interval.html#cb5-14" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dates,midpt)</span>
-<span id="cb5-15"><a href="mcd-and-confidence-interval.html#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="mcd-and-confidence-interval.html#cb5-16" aria-hidden="true" tabindex="-1"></a>mydata2 <span class="ot">&lt;-</span> mydata</span>
+<span id="cb5-5"><a href="mcd-and-confidence-interval.html#cb5-5" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;nrb_mcd_data.csv&#39;</span>, </span>
+<span id="cb5-6"><a href="mcd-and-confidence-interval.html#cb5-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, </span>
+<span id="cb5-7"><a href="mcd-and-confidence-interval.html#cb5-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> T, </span>
+<span id="cb5-8"><a href="mcd-and-confidence-interval.html#cb5-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb5-9"><a href="mcd-and-confidence-interval.html#cb5-9" aria-hidden="true" tabindex="-1"></a>types <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">colnames</span>(mydata))</span>
+<span id="cb5-10"><a href="mcd-and-confidence-interval.html#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="mcd-and-confidence-interval.html#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="mcd-and-confidence-interval.html#cb5-12" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;nrb_type_dates.csv&#39;</span>, </span>
+<span id="cb5-13"><a href="mcd-and-confidence-interval.html#cb5-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, </span>
+<span id="cb5-14"><a href="mcd-and-confidence-interval.html#cb5-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> T)</span>
+<span id="cb5-15"><a href="mcd-and-confidence-interval.html#cb5-15" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">min</span>(dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb5-16"><a href="mcd-and-confidence-interval.html#cb5-16" aria-hidden="true" tabindex="-1"></a>dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> dates[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="sc">+</span> (bc<span class="sc">*-</span><span class="dv">1</span>)</span>
 <span id="cb5-17"><a href="mcd-and-confidence-interval.html#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="mcd-and-confidence-interval.html#cb5-18" aria-hidden="true" tabindex="-1"></a>mcd.calc <span class="ot">&lt;-</span> <span class="cf">function</span>(x,types,dates) {</span>
-<span id="cb5-19"><a href="mcd-and-confidence-interval.html#cb5-19" aria-hidden="true" tabindex="-1"></a>tot <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(x))</span>
-<span id="cb5-20"><a href="mcd-and-confidence-interval.html#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(types)) {</span>
-<span id="cb5-21"><a href="mcd-and-confidence-interval.html#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dates)) {</span>
-<span id="cb5-22"><a href="mcd-and-confidence-interval.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (types[i,] <span class="sc">==</span> dates[j,<span class="dv">1</span>]) </span>
-<span id="cb5-23"><a href="mcd-and-confidence-interval.html#cb5-23" aria-hidden="true" tabindex="-1"></a>{x[,i] <span class="ot">&lt;-</span> x[,i] <span class="sc">*</span> dates[j,<span class="dv">4</span>]}}}</span>
-<span id="cb5-24"><a href="mcd-and-confidence-interval.html#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="mcd-and-confidence-interval.html#cb5-25" aria-hidden="true" tabindex="-1"></a>mcd <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(mydata), <span class="dv">1</span>)</span>
-<span id="cb5-26"><a href="mcd-and-confidence-interval.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mcd) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(mydata)</span>
-<span id="cb5-27"><a href="mcd-and-confidence-interval.html#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="mcd-and-confidence-interval.html#cb5-28" aria-hidden="true" tabindex="-1"></a>newtot <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(x))</span>
+<span id="cb5-18"><a href="mcd-and-confidence-interval.html#cb5-18" aria-hidden="true" tabindex="-1"></a>midpt <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(((dates[,<span class="dv">3</span>] <span class="sc">-</span> dates[,<span class="dv">2</span>])<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> dates[,<span class="dv">2</span>])</span>
+<span id="cb5-19"><a href="mcd-and-confidence-interval.html#cb5-19" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dates,midpt)</span>
+<span id="cb5-20"><a href="mcd-and-confidence-interval.html#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="mcd-and-confidence-interval.html#cb5-21" aria-hidden="true" tabindex="-1"></a>mydata2 <span class="ot">&lt;-</span> mydata</span>
+<span id="cb5-22"><a href="mcd-and-confidence-interval.html#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="mcd-and-confidence-interval.html#cb5-23" aria-hidden="true" tabindex="-1"></a>mcd.calc <span class="ot">&lt;-</span> <span class="cf">function</span>(x,types,dates) {</span>
+<span id="cb5-24"><a href="mcd-and-confidence-interval.html#cb5-24" aria-hidden="true" tabindex="-1"></a>tot <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(x))</span>
+<span id="cb5-25"><a href="mcd-and-confidence-interval.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(types)) {</span>
+<span id="cb5-26"><a href="mcd-and-confidence-interval.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dates)) {</span>
+<span id="cb5-27"><a href="mcd-and-confidence-interval.html#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (types[i,] <span class="sc">==</span> dates[j,<span class="dv">1</span>]) </span>
+<span id="cb5-28"><a href="mcd-and-confidence-interval.html#cb5-28" aria-hidden="true" tabindex="-1"></a>{x[,i] <span class="ot">&lt;-</span> x[,i] <span class="sc">*</span> dates[j,<span class="dv">4</span>]}}}</span>
 <span id="cb5-29"><a href="mcd-and-confidence-interval.html#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="mcd-and-confidence-interval.html#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mcd)) {</span>
-<span id="cb5-31"><a href="mcd-and-confidence-interval.html#cb5-31" aria-hidden="true" tabindex="-1"></a>mcd[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> newtot[i,] <span class="sc">/</span> tot[i,] <span class="sc">+</span> bc}</span>
-<span id="cb5-32"><a href="mcd-and-confidence-interval.html#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(mcd)} </span>
-<span id="cb5-33"><a href="mcd-and-confidence-interval.html#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="mcd-and-confidence-interval.html#cb5-34" aria-hidden="true" tabindex="-1"></a>mcd <span class="ot">&lt;-</span> <span class="fu">mcd.calc</span>(mydata2, types, dates)</span>
-<span id="cb5-35"><a href="mcd-and-confidence-interval.html#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="mcd-and-confidence-interval.html#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################################################</span></span>
-<span id="cb5-37"><a href="mcd-and-confidence-interval.html#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="mcd-and-confidence-interval.html#cb5-38" aria-hidden="true" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb5-39"><a href="mcd-and-confidence-interval.html#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="mcd-and-confidence-interval.html#cb5-40" aria-hidden="true" tabindex="-1"></a>data.rowsum <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(mydata))</span>
-<span id="cb5-41"><a href="mcd-and-confidence-interval.html#cb5-41" aria-hidden="true" tabindex="-1"></a>range <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(mydata), <span class="dv">2</span>)</span>
+<span id="cb5-30"><a href="mcd-and-confidence-interval.html#cb5-30" aria-hidden="true" tabindex="-1"></a>mcd <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(mydata), <span class="dv">1</span>)</span>
+<span id="cb5-31"><a href="mcd-and-confidence-interval.html#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mcd) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(mydata)</span>
+<span id="cb5-32"><a href="mcd-and-confidence-interval.html#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="mcd-and-confidence-interval.html#cb5-33" aria-hidden="true" tabindex="-1"></a>newtot <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(x))</span>
+<span id="cb5-34"><a href="mcd-and-confidence-interval.html#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="mcd-and-confidence-interval.html#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mcd)) {</span>
+<span id="cb5-36"><a href="mcd-and-confidence-interval.html#cb5-36" aria-hidden="true" tabindex="-1"></a>mcd[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> newtot[i,] <span class="sc">/</span> tot[i,] <span class="sc">+</span> bc}</span>
+<span id="cb5-37"><a href="mcd-and-confidence-interval.html#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(mcd)} </span>
+<span id="cb5-38"><a href="mcd-and-confidence-interval.html#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="mcd-and-confidence-interval.html#cb5-39" aria-hidden="true" tabindex="-1"></a>mcd <span class="ot">&lt;-</span> <span class="fu">mcd.calc</span>(mydata2, types, dates)</span>
+<span id="cb5-40"><a href="mcd-and-confidence-interval.html#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="mcd-and-confidence-interval.html#cb5-41" aria-hidden="true" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
 <span id="cb5-42"><a href="mcd-and-confidence-interval.html#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="mcd-and-confidence-interval.html#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mydata)) {</span>
-<span id="cb5-44"><a href="mcd-and-confidence-interval.html#cb5-44" aria-hidden="true" tabindex="-1"></a>data.sim <span class="ot">&lt;-</span> <span class="fu">rmultinom</span>(nsim, data.rowsum[i,], <span class="at">prob =</span> mydata[i,])</span>
-<span id="cb5-45"><a href="mcd-and-confidence-interval.html#cb5-45" aria-hidden="true" tabindex="-1"></a>data.sim <span class="ot">&lt;-</span> <span class="fu">t</span>(data.sim)</span>
-<span id="cb5-46"><a href="mcd-and-confidence-interval.html#cb5-46" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">mcd.calc</span>(data.sim, types,dates)</span>
-<span id="cb5-47"><a href="mcd-and-confidence-interval.html#cb5-47" aria-hidden="true" tabindex="-1"></a>range[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(temp) <span class="sc">-</span> (<span class="fu">sd</span>(temp)<span class="sc">*</span><span class="fl">1.96</span>)</span>
-<span id="cb5-48"><a href="mcd-and-confidence-interval.html#cb5-48" aria-hidden="true" tabindex="-1"></a>range[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(temp) <span class="sc">+</span> (<span class="fu">sd</span>(temp)<span class="sc">*</span><span class="fl">1.96</span>)}</span>
-<span id="cb5-49"><a href="mcd-and-confidence-interval.html#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="mcd-and-confidence-interval.html#cb5-50" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">row.names</span>(mydata), mcd, range)</span>
-<span id="cb5-51"><a href="mcd-and-confidence-interval.html#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(output) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;site&#39;</span>, <span class="st">&#39;mcd&#39;</span>, <span class="st">&#39;lower&#39;</span>, <span class="st">&#39;higher&#39;</span>)</span>
+<span id="cb5-43"><a href="mcd-and-confidence-interval.html#cb5-43" aria-hidden="true" tabindex="-1"></a>data.rowsum <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rowSums</span>(mydata))</span>
+<span id="cb5-44"><a href="mcd-and-confidence-interval.html#cb5-44" aria-hidden="true" tabindex="-1"></a>range <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(mydata), <span class="dv">2</span>)</span>
+<span id="cb5-45"><a href="mcd-and-confidence-interval.html#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="mcd-and-confidence-interval.html#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mydata)) {</span>
+<span id="cb5-47"><a href="mcd-and-confidence-interval.html#cb5-47" aria-hidden="true" tabindex="-1"></a>data.sim <span class="ot">&lt;-</span> <span class="fu">rmultinom</span>(nsim, data.rowsum[i,], <span class="at">prob =</span> mydata[i,])</span>
+<span id="cb5-48"><a href="mcd-and-confidence-interval.html#cb5-48" aria-hidden="true" tabindex="-1"></a>data.sim <span class="ot">&lt;-</span> <span class="fu">t</span>(data.sim)</span>
+<span id="cb5-49"><a href="mcd-and-confidence-interval.html#cb5-49" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">mcd.calc</span>(data.sim, types,dates)</span>
+<span id="cb5-50"><a href="mcd-and-confidence-interval.html#cb5-50" aria-hidden="true" tabindex="-1"></a>range[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(temp) <span class="sc">-</span> (<span class="fu">sd</span>(temp)<span class="sc">*</span><span class="fl">1.96</span>)</span>
+<span id="cb5-51"><a href="mcd-and-confidence-interval.html#cb5-51" aria-hidden="true" tabindex="-1"></a>range[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(temp) <span class="sc">+</span> (<span class="fu">sd</span>(temp)<span class="sc">*</span><span class="fl">1.96</span>)}</span>
 <span id="cb5-52"><a href="mcd-and-confidence-interval.html#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="mcd-and-confidence-interval.html#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(output, <span class="at">file =</span> <span class="st">&#39;mcd_out.csv&#39;</span>, <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
+<span id="cb5-53"><a href="mcd-and-confidence-interval.html#cb5-53" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">row.names</span>(mydata), mcd, range)</span>
+<span id="cb5-54"><a href="mcd-and-confidence-interval.html#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(output) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;site&#39;</span>, <span class="st">&#39;mcd&#39;</span>, <span class="st">&#39;lower&#39;</span>, <span class="st">&#39;higher&#39;</span>)</span>
+<span id="cb5-55"><a href="mcd-and-confidence-interval.html#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="mcd-and-confidence-interval.html#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(output, <span class="at">file =</span> <span class="st">&#39;mcd_out.csv&#39;</span>, <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
 <div id="plot-mcd-results-with-confidence-interval-as-error-bars" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Plot MCD results with confidence interval as error bars</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="mcd-and-confidence-interval.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot mean ceramic dates with error bars</span></span>
@@ -274,8 +277,8 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41SM56</td>
 <td align="right">1116.667</td>
-<td align="right">1095.273</td>
-<td align="right">1139.421</td>
+<td align="right">1090.336</td>
+<td align="right">1140.957</td>
 </tr>
 <tr class="even">
 <td align="left">41SM55</td>
@@ -286,26 +289,26 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41SM77</td>
 <td align="right">1548.750</td>
-<td align="right">1519.451</td>
-<td align="right">1576.763</td>
+<td align="right">1517.152</td>
+<td align="right">1577.063</td>
 </tr>
 <tr class="even">
 <td align="left">41SM90</td>
 <td align="right">1530.625</td>
-<td align="right">1525.564</td>
-<td align="right">1534.844</td>
+<td align="right">1525.469</td>
+<td align="right">1536.623</td>
 </tr>
 <tr class="odd">
 <td align="left">41SM73</td>
 <td align="right">1206.250</td>
-<td align="right">1030.982</td>
-<td align="right">1381.518</td>
+<td align="right">1035.395</td>
+<td align="right">1390.115</td>
 </tr>
 <tr class="even">
 <td align="left">41SM93</td>
 <td align="right">1538.500</td>
-<td align="right">1533.770</td>
-<td align="right">1544.271</td>
+<td align="right">1533.517</td>
+<td align="right">1542.994</td>
 </tr>
 <tr class="odd">
 <td align="left">41SM151</td>
@@ -316,20 +319,20 @@ div.csl-indent {
 <tr class="even">
 <td align="left">41SM158</td>
 <td align="right">1532.500</td>
-<td align="right">1521.797</td>
-<td align="right">1541.366</td>
+<td align="right">1522.935</td>
+<td align="right">1542.371</td>
 </tr>
 <tr class="odd">
 <td align="left">41SM249</td>
 <td align="right">1535.000</td>
-<td align="right">1528.802</td>
-<td align="right">1542.218</td>
+<td align="right">1526.086</td>
+<td align="right">1543.506</td>
 </tr>
 <tr class="even">
 <td align="left">41SM150</td>
 <td align="right">1346.667</td>
-<td align="right">1251.997</td>
-<td align="right">1459.091</td>
+<td align="right">1254.227</td>
+<td align="right">1421.351</td>
 </tr>
 <tr class="odd">
 <td align="left">41SM355</td>
@@ -346,20 +349,20 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41HE114</td>
 <td align="right">1535.263</td>
-<td align="right">1530.281</td>
-<td align="right">1540.632</td>
+<td align="right">1530.202</td>
+<td align="right">1539.615</td>
 </tr>
 <tr class="even">
 <td align="left">41HE4</td>
 <td align="right">1532.500</td>
-<td align="right">1525.009</td>
-<td align="right">1540.297</td>
+<td align="right">1525.063</td>
+<td align="right">1539.019</td>
 </tr>
 <tr class="odd">
 <td align="left">41HE75</td>
 <td align="right">1531.667</td>
-<td align="right">1527.769</td>
-<td align="right">1535.224</td>
+<td align="right">1525.999</td>
+<td align="right">1537.878</td>
 </tr>
 <tr class="even">
 <td align="left">41HE78</td>
@@ -376,56 +379,56 @@ div.csl-indent {
 <tr class="even">
 <td align="left">41AN201</td>
 <td align="right">1528.750</td>
-<td align="right">1522.703</td>
-<td align="right">1532.655</td>
+<td align="right">1522.399</td>
+<td align="right">1534.948</td>
 </tr>
 <tr class="odd">
 <td align="left">41CE4</td>
 <td align="right">1532.143</td>
-<td align="right">1529.355</td>
-<td align="right">1534.697</td>
+<td align="right">1529.387</td>
+<td align="right">1534.957</td>
 </tr>
 <tr class="even">
 <td align="left">41CE12</td>
 <td align="right">1589.135</td>
-<td align="right">1565.538</td>
-<td align="right">1609.254</td>
+<td align="right">1566.184</td>
+<td align="right">1610.025</td>
 </tr>
 <tr class="odd">
 <td align="left">41CE14</td>
 <td align="right">1528.571</td>
-<td align="right">1527.124</td>
-<td align="right">1529.949</td>
+<td align="right">1527.576</td>
+<td align="right">1529.643</td>
 </tr>
 <tr class="even">
 <td align="left">41CE15</td>
 <td align="right">1601.667</td>
-<td align="right">1512.092</td>
-<td align="right">1726.956</td>
+<td align="right">1483.160</td>
+<td align="right">1709.901</td>
 </tr>
 <tr class="odd">
 <td align="left">41CE17</td>
 <td align="right">1530.192</td>
-<td align="right">1527.364</td>
-<td align="right">1532.950</td>
+<td align="right">1527.458</td>
+<td align="right">1533.304</td>
 </tr>
 <tr class="even">
 <td align="left">41CE19</td>
 <td align="right">1076.273</td>
-<td align="right">1056.466</td>
-<td align="right">1096.587</td>
+<td align="right">1054.154</td>
+<td align="right">1097.102</td>
 </tr>
 <tr class="odd">
 <td align="left">41CE23</td>
 <td align="right">1535.000</td>
-<td align="right">1529.610</td>
-<td align="right">1540.288</td>
+<td align="right">1530.430</td>
+<td align="right">1541.305</td>
 </tr>
 <tr class="even">
 <td align="left">41CE25</td>
 <td align="right">1547.000</td>
-<td align="right">1526.830</td>
-<td align="right">1568.149</td>
+<td align="right">1522.709</td>
+<td align="right">1567.805</td>
 </tr>
 <tr class="odd">
 <td align="left">41CE421</td>
@@ -436,26 +439,26 @@ div.csl-indent {
 <tr class="even">
 <td align="left">41CE6</td>
 <td align="right">1645.833</td>
-<td align="right">1568.017</td>
-<td align="right">1736.099</td>
+<td align="right">1580.167</td>
+<td align="right">1715.786</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN1</td>
 <td align="right">1532.759</td>
-<td align="right">1530.263</td>
-<td align="right">1535.444</td>
+<td align="right">1530.002</td>
+<td align="right">1535.641</td>
 </tr>
 <tr class="even">
 <td align="left">41AN13</td>
 <td align="right">1692.692</td>
-<td align="right">1652.695</td>
-<td align="right">1738.671</td>
+<td align="right">1651.316</td>
+<td align="right">1740.725</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN14</td>
 <td align="right">1527.727</td>
-<td align="right">1524.005</td>
-<td align="right">1531.561</td>
+<td align="right">1524.305</td>
+<td align="right">1530.760</td>
 </tr>
 <tr class="even">
 <td align="left">41AN16</td>
@@ -466,20 +469,20 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41AN18</td>
 <td align="right">1532.500</td>
-<td align="right">1523.184</td>
-<td align="right">1543.653</td>
+<td align="right">1521.951</td>
+<td align="right">1544.274</td>
 </tr>
 <tr class="even">
 <td align="left">41AN184</td>
 <td align="right">1596.667</td>
-<td align="right">1482.844</td>
-<td align="right">1704.639</td>
+<td align="right">1488.506</td>
+<td align="right">1722.378</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN2</td>
 <td align="right">1555.625</td>
-<td align="right">1523.663</td>
-<td align="right">1588.135</td>
+<td align="right">1517.240</td>
+<td align="right">1590.426</td>
 </tr>
 <tr class="even">
 <td align="left">41AN21</td>
@@ -490,44 +493,44 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41AN26</td>
 <td align="right">1716.111</td>
-<td align="right">1692.542</td>
-<td align="right">1740.005</td>
+<td align="right">1685.681</td>
+<td align="right">1743.616</td>
 </tr>
 <tr class="even">
 <td align="left">41AN32</td>
 <td align="right">1538.750</td>
-<td align="right">1518.403</td>
-<td align="right">1561.515</td>
+<td align="right">1518.560</td>
+<td align="right">1555.287</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN34</td>
 <td align="right">1540.278</td>
-<td align="right">1523.520</td>
-<td align="right">1562.954</td>
+<td align="right">1516.432</td>
+<td align="right">1569.599</td>
 </tr>
 <tr class="even">
 <td align="left">41AN38</td>
 <td align="right">1528.750</td>
-<td align="right">1524.966</td>
-<td align="right">1532.483</td>
+<td align="right">1524.602</td>
+<td align="right">1532.541</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN39</td>
 <td align="right">1529.286</td>
-<td align="right">1524.361</td>
-<td align="right">1534.211</td>
+<td align="right">1523.388</td>
+<td align="right">1535.708</td>
 </tr>
 <tr class="even">
 <td align="left">41AN44</td>
 <td align="right">1535.909</td>
-<td align="right">1531.907</td>
-<td align="right">1540.133</td>
+<td align="right">1532.231</td>
+<td align="right">1539.420</td>
 </tr>
 <tr class="odd">
 <td align="left">41AN48</td>
 <td align="right">1532.500</td>
-<td align="right">1523.619</td>
-<td align="right">1543.523</td>
+<td align="right">1520.103</td>
+<td align="right">1543.060</td>
 </tr>
 <tr class="even">
 <td align="left">41AN53</td>
@@ -538,8 +541,8 @@ div.csl-indent {
 <tr class="odd">
 <td align="left">41AN54</td>
 <td align="right">1545.714</td>
-<td align="right">1515.110</td>
-<td align="right">1573.184</td>
+<td align="right">1515.049</td>
+<td align="right">1575.344</td>
 </tr>
 <tr class="even">
 <td align="left">41AN56</td>

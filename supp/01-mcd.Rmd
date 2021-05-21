@@ -7,11 +7,16 @@ Sites selected for this study come from the Caddo Ceramic Vessel Database [@RN11
 library(here)
 
 #read data
-mydata <- read.csv(file = 'nrb_mcd_data.csv', sep = ',', header = T, row.names = 1)
+mydata <- read.csv(file = 'nrb_mcd_data.csv', 
+                   sep = ',', 
+                   header = T, 
+                   row.names = 1)
 types <- as.matrix(colnames(mydata))
 
 
-dates <- read.csv(file = 'nrb_type_dates.csv', sep = ',', header = T)
+dates <- read.csv(file = 'nrb_type_dates.csv', 
+                  sep = ',', 
+                  header = T)
 bc <- min(dates[,2:3])
 dates[,2:3] <- dates[,2:3] + (bc*-1)
 
@@ -38,9 +43,7 @@ return(mcd)}
 
 mcd <- mcd.calc(mydata2, types, dates)
 
-###############################################################################
-
-nsim <- 1000
+nsim <- 100000
 
 data.rowsum <- as.matrix(rowSums(mydata))
 range <- matrix(0, nrow(mydata), 2)
