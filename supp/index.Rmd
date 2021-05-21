@@ -1,0 +1,45 @@
+--- 
+title: "Caddo Chronology in the Neches River Basin"
+author: "Robert Z. Selden, Jr."
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [mcd.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Caddo chronology"
+---
+
+# Preface {-}
+
+>Reproducibility---the ability to recompute results---and replicability---the chances other experimenters will achieve a consistent result---are two foundational characteristics of successful scientific research [@RN20918].
+
+This volume is written in **Markdown**, and includes all analysis code employed in the study, providing a means for others to reproduce (exactly) those results discussed and expounded upon in the following chapters. The replicable nature of this undertaking provides a means for others to critically assess and evaluate the various analytical components of this study [@RN20915;@RN20916;@RN20917], which is a necessary requirement for the production of reliable knowledge. 
+
+Diagnostic types---whether `functional`, `decorative`, `morphological`, or `chronological` [@RN20847]---are of considerable import in formulating archaeological interpretations. Temporal ranges associated with the Caddo ceramic types were used in an analysis of mean ceramic dates (MCD) for sites in the Neches River basin, and the type designations themselves were used for the seriation. The contexts associated with radiocarbon dates from sites included in the analysis were scrutinised to ensure that they reasonably articulate with either the Caddo vessels (primary) or Caddo component (secondary) for each site included in the study. Dates were then modelled and compared with the MCD and seriation results.
+
+**The goal of this endeavour was to produce a more robust and data-supported chronology for the Caddo period in the Neches River Basin of northeast Texas.**
+
+## Acknowledgments
+
+I express my gratitude to ... . Thanks to ... , as well as the editor and reviewers for their comments and constructive criticisms, which further improved the manuscript.
+
+## Data management
+
+The analysis code associated with this project can be accessed through this document or the GitHub repository [https://github.com/aksel-blaise/neches.chron](https://github.com/aksel-blaise/neches.chron), which is digitally curated on the Open Science Framework ([DOI 10.17605/OSF.IO/SR7QW](https://osf.io/sr7qw//)).
+
+### Colophon
+
+This version of the analysis was generated on `r Sys.time()` using the following computational environment and dependencies: 
+
+```{r colophon, cache = FALSE}
+# what R packages and versions were used?
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+Current Git commit details are:
+
+```{r}
+# where can I find this commit? 
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+```

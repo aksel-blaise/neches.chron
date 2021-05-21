@@ -1,0 +1,9 @@
+tab:ggplot
+fig:ggplot
+acknowledgments
+data-management
+colophon
+mcd-and-confidence-interval
+plot-mcd-results-with-confidence-interval-as-error-bars
+seriation
+radiocarbon

@@ -1,0 +1,36 @@
+# Seriation
+
+```{r seriation, eval = FALSE}
+Caddo <- read.delim("clipboard")
+Caddo$Trinomial <- as.character(Caddo$Trinomial)
+save(Caddo, file="Caddo.RData")
+table(Caddo$com)
+rowSums(Caddo[, 3:40])
+colSums(Caddo[, 3:40])
+gt4 <- rowSums(Caddo[, 3:40]) > 4
+Caddo.sub <- Caddo[gt4, ]
+save(Caddo.sub, file="Caddo.sub.RData")
+
+library(ca)
+Caddo.sub.ca <- ca(Caddo.sub[, 3:40])
+plot.ca(Caddo.sub.ca, cex=.75)
+
+
+library(vegan)
+Caddo.sub.dec <- decorana(Caddo.sub[, 3:40])
+plot(Caddo.sub.dec, display="sites", type="text")
+
+library(plotrix)
+rowlbl <- Caddo.sub$Trinomial
+idx <- order(Caddo.sub.ca$rowcoord[, 1])
+Caddo.sub.pct <- prop.table(as.matrix(Caddo.sub[, 3:40]), 1) * 100
+battleship.plot(Caddo.sub.pct[idx, ], cex.labels = .75, maxxspan=.75,
+    yaxlab=rowlbl[idx], col="lightblue")
+
+idx2 <- rev(order(Caddo.sub.dec$rproj[, 1]))
+battleship.plot(Caddo.sub.pct[idx2, ], cex.labels = .75, maxxspan=.75,
+                yaxlab=rowlbl[idx2], col="lightblue")
+plot(idx, idx2, pch=16)
+abline(a=0, b=1)
+```
+
