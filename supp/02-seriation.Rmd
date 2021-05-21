@@ -15,7 +15,6 @@ library(ca)
 Caddo.sub.ca <- ca(Caddo.sub[, 3:40])
 plot.ca(Caddo.sub.ca, cex=.75)
 
-
 library(vegan)
 Caddo.sub.dec <- decorana(Caddo.sub[, 3:40])
 plot(Caddo.sub.dec, display="sites", type="text")

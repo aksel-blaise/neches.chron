@@ -195,37 +195,36 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="seriation" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Seriation</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="seriation.html#cb9-1" aria-hidden="true" tabindex="-1"></a>Caddo <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>)</span>
-<span id="cb9-2"><a href="seriation.html#cb9-2" aria-hidden="true" tabindex="-1"></a>Caddo<span class="sc">$</span>Trinomial <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Caddo<span class="sc">$</span>Trinomial)</span>
-<span id="cb9-3"><a href="seriation.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(Caddo, <span class="at">file=</span><span class="st">&quot;Caddo.RData&quot;</span>)</span>
-<span id="cb9-4"><a href="seriation.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Caddo<span class="sc">$</span>com)</span>
-<span id="cb9-5"><a href="seriation.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
-<span id="cb9-6"><a href="seriation.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
-<span id="cb9-7"><a href="seriation.html#cb9-7" aria-hidden="true" tabindex="-1"></a>gt4 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>]) <span class="sc">&gt;</span> <span class="dv">4</span></span>
-<span id="cb9-8"><a href="seriation.html#cb9-8" aria-hidden="true" tabindex="-1"></a>Caddo.sub <span class="ot">&lt;-</span> Caddo[gt4, ]</span>
-<span id="cb9-9"><a href="seriation.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(Caddo.sub, <span class="at">file=</span><span class="st">&quot;Caddo.sub.RData&quot;</span>)</span>
-<span id="cb9-10"><a href="seriation.html#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="seriation.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ca)</span>
-<span id="cb9-12"><a href="seriation.html#cb9-12" aria-hidden="true" tabindex="-1"></a>Caddo.sub.ca <span class="ot">&lt;-</span> <span class="fu">ca</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
-<span id="cb9-13"><a href="seriation.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ca</span>(Caddo.sub.ca, <span class="at">cex=</span>.<span class="dv">75</span>)</span>
-<span id="cb9-14"><a href="seriation.html#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="seriation.html#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="seriation.html#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb9-17"><a href="seriation.html#cb9-17" aria-hidden="true" tabindex="-1"></a>Caddo.sub.dec <span class="ot">&lt;-</span> <span class="fu">decorana</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
-<span id="cb9-18"><a href="seriation.html#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Caddo.sub.dec, <span class="at">display=</span><span class="st">&quot;sites&quot;</span>, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span>
-<span id="cb9-19"><a href="seriation.html#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="seriation.html#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)</span>
-<span id="cb9-21"><a href="seriation.html#cb9-21" aria-hidden="true" tabindex="-1"></a>rowlbl <span class="ot">&lt;-</span> Caddo.sub<span class="sc">$</span>Trinomial</span>
-<span id="cb9-22"><a href="seriation.html#cb9-22" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">order</span>(Caddo.sub.ca<span class="sc">$</span>rowcoord[, <span class="dv">1</span>])</span>
-<span id="cb9-23"><a href="seriation.html#cb9-23" aria-hidden="true" tabindex="-1"></a>Caddo.sub.pct <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">as.matrix</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>]), <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb9-24"><a href="seriation.html#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">battleship.plot</span>(Caddo.sub.pct[idx, ], <span class="at">cex.labels =</span> .<span class="dv">75</span>, <span class="at">maxxspan=</span>.<span class="dv">75</span>,</span>
-<span id="cb9-25"><a href="seriation.html#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxlab=</span>rowlbl[idx], <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
-<span id="cb9-26"><a href="seriation.html#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="seriation.html#cb9-27" aria-hidden="true" tabindex="-1"></a>idx2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(Caddo.sub.dec<span class="sc">$</span>rproj[, <span class="dv">1</span>]))</span>
-<span id="cb9-28"><a href="seriation.html#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">battleship.plot</span>(Caddo.sub.pct[idx2, ], <span class="at">cex.labels =</span> .<span class="dv">75</span>, <span class="at">maxxspan=</span>.<span class="dv">75</span>,</span>
-<span id="cb9-29"><a href="seriation.html#cb9-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">yaxlab=</span>rowlbl[idx2], <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
-<span id="cb9-30"><a href="seriation.html#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(idx, idx2, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb9-31"><a href="seriation.html#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="seriation.html#cb8-1" aria-hidden="true" tabindex="-1"></a>Caddo <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>)</span>
+<span id="cb8-2"><a href="seriation.html#cb8-2" aria-hidden="true" tabindex="-1"></a>Caddo<span class="sc">$</span>Trinomial <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Caddo<span class="sc">$</span>Trinomial)</span>
+<span id="cb8-3"><a href="seriation.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(Caddo, <span class="at">file=</span><span class="st">&quot;Caddo.RData&quot;</span>)</span>
+<span id="cb8-4"><a href="seriation.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Caddo<span class="sc">$</span>com)</span>
+<span id="cb8-5"><a href="seriation.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
+<span id="cb8-6"><a href="seriation.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
+<span id="cb8-7"><a href="seriation.html#cb8-7" aria-hidden="true" tabindex="-1"></a>gt4 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(Caddo[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>]) <span class="sc">&gt;</span> <span class="dv">4</span></span>
+<span id="cb8-8"><a href="seriation.html#cb8-8" aria-hidden="true" tabindex="-1"></a>Caddo.sub <span class="ot">&lt;-</span> Caddo[gt4, ]</span>
+<span id="cb8-9"><a href="seriation.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(Caddo.sub, <span class="at">file=</span><span class="st">&quot;Caddo.sub.RData&quot;</span>)</span>
+<span id="cb8-10"><a href="seriation.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="seriation.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ca)</span>
+<span id="cb8-12"><a href="seriation.html#cb8-12" aria-hidden="true" tabindex="-1"></a>Caddo.sub.ca <span class="ot">&lt;-</span> <span class="fu">ca</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
+<span id="cb8-13"><a href="seriation.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ca</span>(Caddo.sub.ca, <span class="at">cex=</span>.<span class="dv">75</span>)</span>
+<span id="cb8-14"><a href="seriation.html#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="seriation.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb8-16"><a href="seriation.html#cb8-16" aria-hidden="true" tabindex="-1"></a>Caddo.sub.dec <span class="ot">&lt;-</span> <span class="fu">decorana</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>])</span>
+<span id="cb8-17"><a href="seriation.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Caddo.sub.dec, <span class="at">display=</span><span class="st">&quot;sites&quot;</span>, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span>
+<span id="cb8-18"><a href="seriation.html#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="seriation.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)</span>
+<span id="cb8-20"><a href="seriation.html#cb8-20" aria-hidden="true" tabindex="-1"></a>rowlbl <span class="ot">&lt;-</span> Caddo.sub<span class="sc">$</span>Trinomial</span>
+<span id="cb8-21"><a href="seriation.html#cb8-21" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">order</span>(Caddo.sub.ca<span class="sc">$</span>rowcoord[, <span class="dv">1</span>])</span>
+<span id="cb8-22"><a href="seriation.html#cb8-22" aria-hidden="true" tabindex="-1"></a>Caddo.sub.pct <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">as.matrix</span>(Caddo.sub[, <span class="dv">3</span><span class="sc">:</span><span class="dv">40</span>]), <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb8-23"><a href="seriation.html#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">battleship.plot</span>(Caddo.sub.pct[idx, ], <span class="at">cex.labels =</span> .<span class="dv">75</span>, <span class="at">maxxspan=</span>.<span class="dv">75</span>,</span>
+<span id="cb8-24"><a href="seriation.html#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxlab=</span>rowlbl[idx], <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb8-25"><a href="seriation.html#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="seriation.html#cb8-26" aria-hidden="true" tabindex="-1"></a>idx2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(Caddo.sub.dec<span class="sc">$</span>rproj[, <span class="dv">1</span>]))</span>
+<span id="cb8-27"><a href="seriation.html#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="fu">battleship.plot</span>(Caddo.sub.pct[idx2, ], <span class="at">cex.labels =</span> .<span class="dv">75</span>, <span class="at">maxxspan=</span>.<span class="dv">75</span>,</span>
+<span id="cb8-28"><a href="seriation.html#cb8-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">yaxlab=</span>rowlbl[idx2], <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb8-29"><a href="seriation.html#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(idx, idx2, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb8-30"><a href="seriation.html#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>)</span></code></pre></div>
 
 </div>
             </section>

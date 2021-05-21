@@ -60,7 +60,7 @@ write.table(output, file = 'mcd_out.csv', sep = ',', row.names = F)
 
 ## Plot MCD results with confidence interval as error bars
 
-```{r ggplot, out.width = "100%", dpi = 600, echo=TRUE, fig.cap = "Figure 1. Mean ceramic dates and 95% probability ranges for Caddo sites in the Neches River basin."}
+```{r ggplot, out.width = "100%", dpi = 600, echo=TRUE, fig.cap = "Mean ceramic dates and 95% probability ranges for Caddo sites in the Neches River basin."}
 # plot mean ceramic dates with error bars
 # if you use the Rmd file included in the GitHub repository, it will export a publication-ready figure at 600dpi in the mcd_files folder
 
@@ -69,7 +69,7 @@ library(ggplot2) # load ggplot2
 
 # read mcd_out
 caddo <- read.csv("mcd_out.csv", header = TRUE, as.is = TRUE)
-knitr::kable(caddo, "pipe", caption = "Table 1. Attributes included in table.")
+knitr::kable(caddo, "pipe", caption = "Attributes included in table.")
 
 # reorder sites by mcd
 caddo$site <- factor(caddo$site, levels = caddo$site[order(caddo$mcd)])
@@ -93,6 +93,4 @@ ggplot() +
   coord_flip() + # provides a representation of time similar to what archaeologists are used to seeing
   labs(x = "Archaeological Site", y = "Date Range CE") + # the axes are flipped, so x = y and y = x
   cs
-
-# end of code
 ```
