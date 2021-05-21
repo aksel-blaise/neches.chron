@@ -1,0 +1,15 @@
+tab:ggplot
+fig:ggplot
+tab:ggplot2
+fig:ggplot2
+acknowledgments
+data-management
+colophon
+mean-ceramic-dates
+plot-mcd-results-with-confidence-interval
+mean-ceramic-dates-5
+plot-mcd-results-with-confidence-interval-1
+seriation
+radiocarbon
+mcd2
+plot-mcd2-results-with-confidence-interval
